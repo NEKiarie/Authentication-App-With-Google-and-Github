@@ -3,12 +3,18 @@ import Layout from "../layout/layout"
 import Link from "next/link"
 import styles from "../styles/Form.module.css"
 import Image from "next/image"
-import { HiAtSymbol, HiFingerPrint, HiLockClosed } from 'react-icons/hi'
+import { HiAtSymbol, HiLockClosed } from 'react-icons/hi'
 import { useState } from "react"
+import { signIn, signOut } from "next-auth/react"
 
 export default function Login() {
 
     const [show, setShow] = useState(false)
+
+    // //Google Handler Function
+    async function handleGoogleSignIn() {
+        signIn('google',{callbackUrl:'http://localhost:3000'})
+    }
 
     return (
         <Layout>
@@ -44,7 +50,7 @@ export default function Login() {
                         name="password"
                         placeholder="Password" />
                     <span className='icon flex items-center px-4'
-                    onClick={() => setShow(!show)}>
+                        onClick={() => setShow(!show)}>
                         <HiLockClosed size={25} /></span>
 
                 </div>
@@ -54,7 +60,7 @@ export default function Login() {
                 </div>
                 {/* </form> */}
                 <div className={styles.button_custom}>
-                    <button type="button">Sign In with Google</button>
+                    <button type="button" onClick={handleGoogleSignIn}>Sign In with Google</button>
 
                 </div>
                 <div className={styles.button_custom}>
