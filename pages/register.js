@@ -5,6 +5,7 @@ import styles from "../styles/Form.module.css"
 import { HiAtSymbol,HiLockClosed, HiOutlineUser, } from 'react-icons/hi'
 import { useState } from "react"
 import { useFormik } from "formik"
+import { registerValidate } from "../lib/validate"
 
 
 export default function Register() {
@@ -16,6 +17,7 @@ const formik = useFormik({
         password: "",
         cpassword: "",
     },
+    validate: registerValidate,
     onSubmit
 })
 
@@ -50,6 +52,9 @@ async function onSubmit(values){
                         <HiOutlineUser size={25} /></span>
 
                 </div>
+                {formik.errors.username && formik.touched.username ? 
+                <span className="text-rose-500">{formik.errors.username}
+                </span> : <></>}
                 
                 <div className={styles.input_group}>
                     <input className={styles.input_text}
@@ -62,6 +67,8 @@ async function onSubmit(values){
                         <HiAtSymbol size={25} /></span>
 
                 </div>
+                {formik.errors.email && formik.touched.email ? 
+                <span className="text-rose-500">{formik.errors.email}</span> : <></>}
 
                 <div className={styles.input_group}>
                     <input className={styles.input_text}
@@ -74,6 +81,9 @@ async function onSubmit(values){
                         <HiLockClosed size={25} /></span>
 
                 </div>
+                {formik.errors.password && formik.touched.password ? 
+                <span className="text-rose-500">{formik.errors.password}</span> : <></>}
+                
                 <div className={styles.input_group}>
                     <input className={styles.input_text}
                         type={`${show.cpassword ? "text" : "password"}`}
@@ -85,6 +95,9 @@ async function onSubmit(values){
                         <HiLockClosed size={25} /></span>
 
                 </div>
+                {formik.errors.cpassword && formik.touched.cpassword ? 
+                <span className="text-rose-500">{formik.errors.cpassword}</span> : <></>}
+               
                 {/**Login Buttons */}
                 <div className="input-button" fi >
                     <button type="submit" className={styles.button}>Sign Up</button>
