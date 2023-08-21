@@ -2,7 +2,7 @@ import Head from "next/head"
 import Layout from "../layout/layout"
 import Link from "next/link"
 import styles from "../styles/Form.module.css"
-import { HiAtSymbol, HiFingerPrint, HiLockClosed, HiOutlineUser, } from 'react-icons/hi'
+import { HiAtSymbol,HiLockClosed, HiOutlineUser, } from 'react-icons/hi'
 import { useState } from "react"
 
 
