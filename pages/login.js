@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export default function Login() {
 
-  const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false)
 
     return (
         <Layout>
@@ -33,25 +33,26 @@ export default function Login() {
                         name="email"
                         placeholder="Email" />
                     <span className='icon flex items-center px-4'
-                        onClick={() => setShow(!show)}>
+                    >
                         <HiAtSymbol size={25} /></span>
 
                 </div>
-               
+
                 <div className={styles.input_group}>
                     <input className={styles.input_text}
                         type={`${show ? "text" : "password"}`}
                         name="password"
                         placeholder="Password" />
-                    <span className='icon flex items-center px-4'>
-                        <HiFingerPrint size={25} /></span>
+                    <span className='icon flex items-center px-4'
+                    onClick={() => setShow(!show)}>
+                        <HiLockClosed size={25} /></span>
 
                 </div>
                 {/**Login Buttons */}
-                <div className="input-button"fi >
+                <div className="input-button" fi >
                     <button type="submit" className={styles.button}>Login</button>
                 </div>
-                 {/* </form> */}
+                {/* </form> */}
                 <div className={styles.button_custom}>
                     <button type="button">Sign In with Google</button>
 
