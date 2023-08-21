@@ -6,18 +6,30 @@ import Image from "next/image"
 import { HiAtSymbol, HiLockClosed } from 'react-icons/hi'
 import { useState } from "react"
 import { signIn, signOut } from "next-auth/react"
+import { useFormik } from "formik"
 
 export default function Login() {
 
     const [show, setShow] = useState(false)
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: ""
+        },
+        onSubmit
+    })
+
+    async function onSubmit(values) {
+        console.log(values)
+    }
 
     // //Google Handler Function
     async function handleGoogleSignIn() {
-        signIn('google',{callbackUrl:'http://localhost:3000'})
+        signIn('google', { callbackUrl: 'http://localhost:3000' })
     }
-      //Github Login
+    //Github Login
     async function handleGithubSignIn() {
-        signIn('github',{callbackUrl:'http://localhost:3000'})
+        signIn('github', { callbackUrl: 'http://localhost:3000' })
     }
 
     return (
@@ -36,12 +48,15 @@ export default function Login() {
 
                 {/**form */}
 
-                {/* <form classname="flex flex-col gap-5"> */}
+                <form classname="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
+                
                 <div className={styles.input_group}>
                     <input className={styles.input_text}
                         type="email"
                         name="email"
-                        placeholder="Email" />
+                        placeholder="Email"
+                        {...formik.getFieldProps('email')}/>
+
                     <span className='icon flex items-center px-4'
                     >
                         <HiAtSymbol size={25} /></span>
@@ -52,7 +67,8 @@ export default function Login() {
                     <input className={styles.input_text}
                         type={`${show ? "text" : "password"}`}
                         name="password"
-                        placeholder="Password" />
+                        placeholder="Password"
+                       {...formik.getFieldProps('password')} />
                     <span className='icon flex items-center px-4'
                         onClick={() => setShow(!show)}>
                         <HiLockClosed size={25} /></span>
@@ -62,16 +78,15 @@ export default function Login() {
                 <div className="input-button" fi >
                     <button type="submit" className={styles.button}>Login</button>
                 </div>
-                {/* </form> */}
+                </form>
                 <div className={styles.button_custom}>
                     <button type="button" onClick={handleGoogleSignIn}>Sign In with Google
-                    <Image src={'/assets/google.png'} width='20' height={20}></Image>
-                    </button>
+                    </button><Image src={'/assets/Google.png'} width={25} height={25}></Image>
 
                 </div>
                 <div className={styles.button_custom}>
                     <button type="button" onClick={handleGithubSignIn}>Sign In with Github
-                    <Image src={'/assets/Github.png'} width={25} height={25}></Image></button>
+                    </button><Image src={'/assets/github.svg'} width={25} height={25}></Image>
                 </div>
                 {/**Bottom */}
                 <p className="text-centertext-gray-400">Don't have an Account yet?
