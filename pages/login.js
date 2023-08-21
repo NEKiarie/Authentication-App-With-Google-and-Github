@@ -15,6 +15,10 @@ export default function Login() {
     async function handleGoogleSignIn() {
         signIn('google',{callbackUrl:'http://localhost:3000'})
     }
+      //Github Login
+    async function handleGithubSignIn() {
+        signIn('github',{callbackUrl:'http://localhost:3000'})
+    }
 
     return (
         <Layout>
@@ -60,11 +64,14 @@ export default function Login() {
                 </div>
                 {/* </form> */}
                 <div className={styles.button_custom}>
-                    <button type="button" onClick={handleGoogleSignIn}>Sign In with Google</button>
+                    <button type="button" onClick={handleGoogleSignIn}>Sign In with Google
+                    <Image src={'/assets/google.png'} width='20' height={20}></Image>
+                    </button>
 
                 </div>
                 <div className={styles.button_custom}>
-                    <button type="button">Sign In with Github</button>
+                    <button type="button" onClick={handleGithubSignIn}>Sign In with Github
+                    <Image src={'/assets/Github.png'} width={25} height={25}></Image></button>
                 </div>
                 {/**Bottom */}
                 <p className="text-centertext-gray-400">Don't have an Account yet?

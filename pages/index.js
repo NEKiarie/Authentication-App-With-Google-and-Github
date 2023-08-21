@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useSession, getSession } from "next-auth/react"
+import { useSession, getSession, signOut } from "next-auth/react"
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -10,12 +10,16 @@ export default function Home() {
 
   const {data:session} = useSession()
 
+  function handleGoogleSignOut(){
+    signOut()
+  }
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Home Page</title>
       </Head>
-      {session ? User({session}): Guest()}
+      {session ? User({session, handleGoogleSignOut}): Guest()}
     </div>
   )
 }
@@ -35,7 +39,7 @@ function Guest() {
 
 //Authorized user
 
-function User({ session}){
+function User({ session, handleGoogleSignOut}){
   return(
     <main className="container mx-auto text-center py-20">
     <h3 className='text-4xl font-bold'>Authorized User HomePage</h3>
@@ -46,7 +50,7 @@ function User({ session}){
     </div>
 
     <div className='flex justify-center'>
-      <button className='mt-5 px-10 py-1 rounded-sm bg-indigo-500 bg-gray-50'>Sign Out</button>
+      <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm bg-indigo-500 bg-gray-50'>Sign Out</button>
     </div>
 
     <div className='flex justify-center'>
