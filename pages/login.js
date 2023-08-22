@@ -8,10 +8,12 @@ import { useState } from "react"
 import { signIn, signOut } from "next-auth/react"
 import { useFormik } from "formik"
 import login_validate from "../lib/validate"
+import { useRouter } from "next/router"
 
 export default function Login() {
 
     const [show, setShow] = useState(false)
+    const router = useRouter()
     //formik hook
     const formik = useFormik({
         initialValues: {
@@ -23,7 +25,14 @@ export default function Login() {
     })
 
     async function onSubmit(values) {
-        console.log(values)
+       const status =  await signIn('credentials', {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+            callbackUrl:"/"
+        })
+
+       if(status.ok)router.push(status.url)
     }
 
     // //Google Handler Function
@@ -51,7 +60,7 @@ export default function Login() {
 
                 {/**form */}
 
-                {/* <form classname="flex flex-col gap-5" onSubmit={formik.handleSubmit}> */}
+                <form classname="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
 
                     <div className={`${styles.input_group} 
                 ${formik.errors.email && formik.touched.email ? 'border-rose-600' : ""}`}>
@@ -86,7 +95,7 @@ export default function Login() {
                         <button type="submit" className={styles.button}>Login</button>
                     </div>
                 
-                 {/* </form> */}
+                 </form>
                
                 <div className={styles.button_custom}>
                     <button type="button" onClick={handleGoogleSignIn}>Sign In with Google
