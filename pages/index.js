@@ -31,7 +31,8 @@ function Guest() {
       <h3 className='text-4xl font-bold'>Guest HomePage</h3>
 
       <div className='flex justify-center'>
-        <Link href = {"/login"}><a className='mt-5 px-10 py-1 rounded-sm bg-indigo-500 text-gray'>Sign In</a></Link>
+        <Link href = {"/login"}><a className='mt-5 px-10 py-1 rounded-sm
+         bg-indigo-500 text-gray'>Sign In</a></Link>
       </div>
     </main>
   )
@@ -50,7 +51,8 @@ function User({ session, handleGoogleSignOut}){
     </div>
 
     <div className='flex justify-center'>
-      <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm bg-indigo-500 bg-gray-50'>Sign Out</button>
+      <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm
+       bg-indigo-500 bg-gray-50'>Sign Out</button>
     </div>
 
     <div className='flex justify-center'>
