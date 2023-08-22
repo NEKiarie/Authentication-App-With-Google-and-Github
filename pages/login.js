@@ -92,7 +92,7 @@ export default function Login() {
                     </div>
 
                     {/**Login Buttons */}
-                    <div className="input-button" fi >
+                    <div className="input-button">
                         <button type="submit" className={styles.button}>Login</button>
                     </div>
 
