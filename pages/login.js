@@ -60,7 +60,7 @@ export default function Login() {
 
                 {/**form */}
 
-                <form classname="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
+                <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
 
                     <div className={`${styles.input_group} 
                 ${formik.errors.email && formik.touched.email ? 'border-rose-600' : ""}`}>
@@ -90,6 +90,7 @@ export default function Login() {
                             <HiLockClosed size={25} /></span>
 
                     </div>
+                    
                     {/**Login Buttons */}
                     <div className="input-button" fi >
                         <button type="submit" className={styles.button}>Login</button>

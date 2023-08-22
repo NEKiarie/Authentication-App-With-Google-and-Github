@@ -40,7 +40,7 @@ async function onSubmit(values){
 
                 {/**form */}
 
-                <form classname="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
+                <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
                 <div className={`${styles.input_group} 
                 ${formik.errors.username && formik.touched.username ? 'border-rose-600': ""}`}>
                     <input className={styles.input_text}

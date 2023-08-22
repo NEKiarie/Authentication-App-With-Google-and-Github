@@ -3,14 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useSession, getSession, signOut } from "next-auth/react"
 import Link from 'next/link'
-import { useState } from 'react'
 
 export default function Home() {
- 
 
-  const {data:session} = useSession()
 
-  function handleGoogleSignOut(){
+  const { data: session } = useSession()
+
+  function handleGoogleSignOut() {
     signOut()
   }
 
@@ -19,7 +18,7 @@ export default function Home() {
       <Head>
         <title>Home Page</title>
       </Head>
-      {session ? User({session, handleGoogleSignOut}): Guest()}
+      {session ? User({ session, handleGoogleSignOut }) : Guest()}
     </div>
   )
 }
@@ -27,46 +26,70 @@ export default function Home() {
 //Guest
 function Guest() {
   return (
+
+    <section className="bg-white text-gray-500">
+      <div
+        className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center"
+      >
+        <div className="mx-auto max-w-3xl text-center">
+          <h1
+            className="bg-gradient-to-r from-blue-500 to-indigo-500  bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+          >
+            Bitnine Global Inc.
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+          Graph connects the world!
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              className="block w-full rounded border border-blue-600
+               bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-gray-800 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+              href="/login"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+
+
+//Authorized user
+
+function User({ session, handleGoogleSignOut }) {
+  return (
     <main className="container mx-auto text-center py-20">
-      <h3 className='text-4xl font-bold'>Guest HomePage</h3>
+      <h3 className='text-4xl font-bold'>Authorized User HomePage</h3>
+
+      <div className='details'>
+        <h5>{session.user.name}</h5>
+        <h5>{session.user.email}</h5>
+      </div>
 
       <div className='flex justify-center'>
-        <Link href = {"/login"}><a className='mt-5 px-10 py-1 rounded-sm
-         bg-indigo-500 text-gray'>Sign In</a></Link>
+        <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm
+       bg-indigo-500 bg-gray-50'>Sign Out</button>
+      </div>
+
+      <div className='flex justify-center'>
+        <Link href={"/profile"}><a className='mt-5 px-10 py-1 rounded-sm
+       bg-indigo-500 text-gray'>Profile page</a></Link>
       </div>
     </main>
   )
 }
 
-//Authorized user
+export async function serverSideProps({ req }) {
+  constsession = await getSession({ req })
 
-function User({ session, handleGoogleSignOut}){
-  return(
-    <main className="container mx-auto text-center py-20">
-    <h3 className='text-4xl font-bold'>Authorized User HomePage</h3>
-
-    <div className='details'>
-     <h5>{session.user.name}</h5>
-     <h5>{session.user.email}</h5>
-    </div>
-
-    <div className='flex justify-center'>
-      <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm
-       bg-indigo-500 bg-gray-50'>Sign Out</button>
-    </div>
-
-    <div className='flex justify-center'>
-      <Link href = {"/profile"}><a className='mt-5 px-10 py-1 rounded-sm bg-indigo-500 text-gray'>Profile page</a></Link>
-    </div>
-  </main>
-  )
-}
-
-export async function serverSideProps({req}){
-  constsession = await getSession({req})
-
-  if(!session){
-    return{
+  if (!session) {
+    return {
       redirect: {
         destination: '/login',
         permanent: false
@@ -75,7 +98,7 @@ export async function serverSideProps({req}){
   }
 
   return {
-    props: {session}
+    props: { session }
   }
 }
 
