@@ -1,6 +1,6 @@
 import connectMongo from "../../../database/conn";
 import Users from "../../../model/schema";
-import { hash } from "bcryptjs/hash";
+import { hash } from "bcryptjs";
 
 export default async function hander(req,res){
    connectMongo().catch(error => res.json({error: "Connection Failed..!"}))
