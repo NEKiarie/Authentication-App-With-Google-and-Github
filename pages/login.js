@@ -25,14 +25,14 @@ export default function Login() {
     })
 
     async function onSubmit(values) {
-       const status =  await signIn('credentials', {
+        const status = await signIn('credentials', {
             redirect: false,
             email: values.email,
             password: values.password,
-            callbackUrl:"/"
+            callbackUrl: "/"
         })
 
-       if(status.ok)router.push(status.url)
+        if (status.ok) router.push(status.url)
     }
 
     // //Google Handler Function
@@ -90,14 +90,14 @@ export default function Login() {
                             <HiLockClosed size={25} /></span>
 
                     </div>
-                    
+
                     {/**Login Buttons */}
                     <div className="input-button" fi >
                         <button type="submit" className={styles.button}>Login</button>
                     </div>
-                
-                 </form>
-               
+
+                </form>
+
                 <div className={styles.button_custom}>
                     <button type="button" onClick={handleGoogleSignIn}>Sign In with Google
                     </button><Image src={'/assets/Google.png'} width={25} height={25}></Image>

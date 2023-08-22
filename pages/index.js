@@ -33,9 +33,10 @@ function Guest() {
       >
         <div className="mx-auto max-w-3xl text-center">
           <h1
-            className="bg-gradient-to-r from-blue-500 to-indigo-500  bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+            className="bg-gradient-to-r from-blue-500 to-indigo-500  
+            bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl"
           >
-            Bitnine Global Inc.
+            Bitnine Global Inc
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
@@ -64,24 +65,37 @@ function Guest() {
 
 function User({ session, handleGoogleSignOut }) {
   return (
-    <main className="container mx-auto text-center py-20">
-      <h3 className='text-4xl font-bold'>Authorized User HomePage</h3>
+<header className="text-gray-600 bg-black body-font">
+  <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <svg xmlns="/assets/Bitnine.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span className="ml-3 text-5xl text-white">Bitnine</span>
+    </a>
+    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <a className="mr-5 text-white hover:text-yellow-500">PRODUCTS</a>
+      <a className="mr-5 text-white hover:text-yellow-500">USECASES</a>
+      <a className="mr-5 text-white hover:text-yellow-500">SERVICES</a>
+      <a className="mr-5 text-white hover:text-yellow-500">RESOURCES</a>
+      <a className="mr-5 text-white hover:text-yellow-500">BLOG</a>
+      <a className="mr-5 text-white hover:text-yellow-500">COMPANY</a>
+      <a className="mr-5 text-white hover:text-yellow-500">IR</a>
+      
+    </nav>
+    <button onClick={handleGoogleSignOut} className="inline-flex items-center
+     bg-indigo-500 text-white border-0 py-1 px-3 focus:outline-none  hover:text-gray-200 rounded text-xl mt-4 md:mt-0">Sign out
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" 
+      stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</header>
 
-      <div className='details'>
-        <h5>{session.user.name}</h5>
-        <h5>{session.user.email}</h5>
-      </div>
 
-      <div className='flex justify-center'>
-        <button onClick={handleGoogleSignOut} className='mt-5 px-10 py-1 rounded-sm
-       bg-indigo-500 bg-gray-50'>Sign Out</button>
-      </div>
 
-      <div className='flex justify-center'>
-        <Link href={"/profile"}><a className='mt-5 px-10 py-1 rounded-sm
-       bg-indigo-500 text-gray'>Profile page</a></Link>
-      </div>
-    </main>
+
   )
 }
 
