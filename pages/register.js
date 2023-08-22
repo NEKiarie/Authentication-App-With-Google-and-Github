@@ -6,10 +6,11 @@ import { HiAtSymbol,HiLockClosed, HiOutlineUser, } from 'react-icons/hi'
 import { useState } from "react"
 import { useFormik } from "formik"
 import { registerValidate } from "../lib/validate"
-
+import { useRouter } from "next/router"
 
 export default function Register() {
 const [show,setShow] =useState({password:false, cpassword:false})
+const router = useRouter()
 const formik = useFormik({
     initialValues: {
         username: "",
@@ -22,7 +23,18 @@ const formik = useFormik({
 })
 
 async function onSubmit(values){
-  console.log(values)
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  }
+  await fetch('http://localhost:3000/api/auth/signup', options)
+  .then(response => response.json)
+  .then((response)=> {
+    if(response)router.push('http://localhost:3000')
+  })
 }
 
     return (
@@ -94,7 +106,7 @@ async function onSubmit(values){
                 </div>
                
                 {/**Login Buttons */}
-                <div className="input-button" fi >
+                <div className="input-button">
                     <button type="submit" className={styles.button}>Sign Up</button>
                 </div>
                 </form>
