@@ -58,9 +58,6 @@ function Guest() {
   )
 }
 
-
-
-
 //Authorized user
 
 function User({ session, handleGoogleSignOut }) {
@@ -89,6 +86,9 @@ function User({ session, handleGoogleSignOut }) {
     </button>
   </div>
 </header>
+
+
+
 
 
 
