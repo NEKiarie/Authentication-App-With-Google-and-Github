@@ -1,5 +1,7 @@
 # Authentication-App-With-Google-and-Github
 
+Netlify deployed link: https://authapp-5e2676.netlify.app/
+
 This is a Next.js project bootstrapped with create-next-app.
 
 Requirement: Node version v18.17.1
